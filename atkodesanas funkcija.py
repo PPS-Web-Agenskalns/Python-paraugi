@@ -1,8 +1,13 @@
-ievade = "1212-21+3"
+ievade = "2*5"
 
 izvade = 0
 summa = 0
 irMinuss = False
+irReiz = False
+irDal = False
+
+List = []
+
 for c in ievade:
     asci = ord(c)
     
@@ -13,38 +18,54 @@ for c in ievade:
         
     else:
         
+
         if irMinuss == True:
             izvade = izvade * -1 
             irMinuss = False
 
         if c == '-':
             irMinuss = True
-            
+
+        if irReiz == True:
+            izvade = izvade * List.pop()
+            irReiz = False
+
+        if c == '*':
+            irReiz = True
+
+        if irDal == True:
+            izvade = List.pop() / izvade
+            irDal = False
+
+        if c == '/':
+            irDal = True
         
-            
-        print(izvade)
-        summa = summa + izvade
+        List.append(izvade)
         izvade = 0
-        print("Seit ir", c)
+            
 
+if irMinuss == True:
+    izvade = izvade * -1 
+    irMinuss = False
+
+if c == '-':
+    irMinuss = True
+
+if irReiz == True:
+    izvade = List.pop() * izvade
+    irReiz = False
+
+if c == '*':
+    irReiz = True
+
+if irDal == True:
+    izvade = List.pop() / izvade
+    irDal = False
+
+if c == '/':
+    irDal = True
         
+List.append(izvade)
+izvade = 0
 
-        
-
-
-
-    
-    """ #veca versija:
-    if c == '+':
-        print(izvade)
-        izvade = ""
-        print("Seit ir plusins")
-
-    else:
-        izvade = izvade + c
-    """
-
-print(izvade)
-summa = summa + izvade
-
-print("summa", summa)
+print("summa", sum(List))

@@ -1,32 +1,5 @@
 ievade = "23313+123-2+12"
-#1. uzdevums
-"""
-Izveidot algoritmu, kas dotajai simbolu virknei,
-katru skaitli izvada jaunā rindiņā
 
-stdin: 23313+123+2+12
-stdout: 23313
-        123
-        2
-        12
-
-"""
-
-"""
-#1. uzd
-cip = ""
-for c in ievade:
-    if c == '+':
-        print("Šeit ir plusiņš")
-        print(cip)
-        cip = ""
-
-    else:
-        cip = cip + c
-
-
-print(cip)
-"""
 #2.uzd
 cip = 0
 summa = 0

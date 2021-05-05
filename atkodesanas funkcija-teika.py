@@ -1,9 +1,13 @@
-ievade = "23313+123-2+12"
+ievade = "23*4+231/23*4-2*3"
 
 #2.uzd
 cip = 0
 summa = 0
+List = []
 irNegativs = False
+irReiz = False
+irDal = False
+
 
 for c in ievade:
     if ord(c)>=48 and ord(c)<=57:
@@ -11,25 +15,50 @@ for c in ievade:
        cip = cip + (ord(c)-48)
 
     else:
-        
-            
+           
         if irNegativs == True:
             irNegativs = False
             cip = cip * -1
 
         if c == '-':
             irNegativs = True
-        
-        
 
-        print(cip)
-        summa = summa + cip
-        print("summa: ", summa)
+        if irReiz == True:
+            irReiz = False
+            cip = cip * List.pop()
+
+        if c == '*':
+            irReiz = True
+
+        if irDal == True:
+            irDal = False
+            cip = cip / List.pop()
+
+        if c == '/':
+            irDal = True
+        
+        List.append(cip)
         cip = 0
+        print(List)
 
-print(cip)
-summa = summa + cip
-print("summa: ", summa)
+#summa = summa + cip
+#print("summa: ", summa)
+
+if irNegativs == True:
+    irNegativs = False
+    cip = cip * -1
+
+
+if irReiz == True:
+    irReiz = False
+    cip = cip * List.pop()
+
+if irDal == True:
+    irDal = False
+    cip = cip / List.pop()
+        
+List.append(cip)
+print("Sum:", sum(List))
 
 
 

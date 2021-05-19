@@ -15,38 +15,81 @@ def delete():
     skaititajs.config(text = str(skaititajs.cget("text")[:-1]))
 
 def rez():
-    ievade = str(skaititajs.cget("text"))
+    
+    ievade = skaititajs.cget("text")
 
-    cip = 0
+    izvade = 0
     summa = 0
-    irNegativs = False
+    irMinuss = False
+    irReiz = False
+    irDal = False
+
+    List = []
 
     for c in ievade:
-        if ord(c)>=48 and ord(c)<=57:
-           cip = cip * 10
-           cip = cip + (ord(c)-48)
-
+        asci = ord(c)
+    
+        if asci<=57 and asci>=48:
+            skaitlis = asci - 48;
+            izvade = izvade * 10 + skaitlis;
+        
+        
         else:
         
-            
-            if irNegativs == True:
-                irNegativs = False
-                cip = cip * -1
+
+            if irMinuss == True:
+                izvade = izvade * -1 
+                irMinuss = False
 
             if c == '-':
-                irNegativs = True
-        
-        
+                irMinuss = True
 
-            print(cip)
-            summa = summa + cip
-            print("summa: ", summa)
-            cip = 0
+            if irReiz == True:
+                izvade = izvade * List.pop()
+                irReiz = False
 
-    print(cip)
-    summa = summa + cip
-    print("summa: ", summa)
-    skaititajs.config(text = summa)
+            if c == '*':
+                irReiz = True
+
+            if irDal == True:
+                izvade = List.pop() / izvade
+                irDal = False
+
+            if c == '/':
+                irDal = True
+        
+            List.append(izvade)
+            izvade = 0
+            
+
+    if irMinuss == True:
+        izvade = izvade * -1 
+        irMinuss = False
+
+    if c == '-':
+        irMinuss = True
+
+    if irReiz == True:
+        izvade = List.pop() * izvade
+        irReiz = False
+
+    if c == '*':
+        irReiz = True
+
+    if irDal == True:
+        izvade = List.pop() / izvade
+        irDal = False
+
+    if c == '/':
+        irDal = True
+        
+    List.append(izvade)
+    izvade = 0
+
+    print("summa", sum(List))
+    skaititajs.config(text = str(sum(List)))
+
+
 
 
 
